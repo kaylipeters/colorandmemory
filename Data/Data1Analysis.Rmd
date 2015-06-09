@@ -1,0 +1,45 @@
+---
+title: "Data1 analysis"
+output: html_document
+---
+#Data analysis and figure creation for Color Memory and Emotion Experiment on Youtube
+
+###Kayli Peters
+
+##Introduction
+This file was used to analyze data from my Color Memory and Emotion Experiment, 
+https://www.youtube.com/watch?v=U6WmtoIuaXY.  
+All materials, including consent, tasks, and debriefing can be accessed 
+in the previous link provided.  **Note**: The link may not be accessible on mobile devices.  It is suggested to 
+work on a laptop or desktop computer.  
+
+These data represent 35 participants who reported participating 
+in existing conditions and emailed me their data.  
+Those participants that did not include the condition
+were not included in this data set.  
+
+Although several variables were included.  Only two were of interest to
+be analyzed here.  The variables representing Congruence and Recall(Remember) were the 2 analyzed.  These data were analyzed and presented on the poster.  
+
+###Preparing data for analysis 
+
+```{r}
+d<-read.csv("data1.csv")
+```
+
+We need to tranform the variables we will be using into factor variables. 
+
+```{r}
+d$Remember<-as.factor(d$Remember)
+d$Congruence<-as.factor(d$Congruence)
+```
+
+##Primary Analysis
+
+
+
+
+
+
+
+

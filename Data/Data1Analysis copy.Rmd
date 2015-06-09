@@ -1,0 +1,104 @@
+---
+title: "Data1 analysis"
+output: html_document
+---
+#Data analysis and figure creation for Color Memory and Emotion Experiment on Youtube
+
+###Kayli Peters
+
+##Introduction
+This file was used to analyze data from my Color Memory and Emotion Experiment, 
+https://www.youtube.com/watch?v=U6WmtoIuaXY.  
+All materials, including consent, tasks, and debriefing can be accessed 
+in the previous link provided.  **Note**: The link may not be accessible on mobile devices.  It is suggested to 
+work on a laptop or desktop computer.  
+
+These data represent 35 participants who reported participating 
+in existing conditions and emailed me their data.  
+Those participants that did not include the condition
+were not included in this data set.  
+
+Although several variables were included.  Only two were of interest to
+be analyzed here.  The variables representing Congruence and Recall(Remember) were the 2 analyzed.  These data were analyzed and presented on the poster.  
+
+###Preparing data for analysis 
+
+```{r}
+d<-read.csv("data1.csv")
+```
+
+Let's take a look at the data.
+```{r}
+str(d)
+```
+
+I'm going to find how many recalled their words and how many did not recall the target 
+words.
+
+
+```{r}
+summary(d$Remember)
+```
+
+Let's also do this for congruence to see how 
+many participated in congruent and incongruent conditions
+
+```{r}
+summary(d$Congruence)
+```
+
+
+We need to tranform the variables we will be using into factor variables. 
+
+```{r}
+d$Remember<-as.factor(d$Remember)
+d$Congruence<-as.factor(d$Congruence)
+```
+
+##Figure
+
+To visualize the data as presented, I will create a histogram of the valence rankings 
+as the pertain to how frequent they appear.
+```{r}
+hist(d$Valence)
+```
+
+```{r, eval=FALSE}
+library(ggplot2)
+```
+```{r,include=FALSE}
+library(ggplot2)
+```
+
+
+
+##Primary Analysis
+
+We will us a Chi Square test to compare counts of categorical responses between the recalled words and whether or not the participants were in a congruent condition.  
+
+```{r}
+tab<-table(d$Remember,d$Congruence)
+tab
+```
+
+     N  Y
+  N  5  1
+  Y 11 17
+  
+These are the frequencies in which the participants remembered the word and whether or not it was congruent.  
+
+```{r}
+chisq.test(d$Remember,d$Remember)
+```
+
+Chi- Squared= 27, p-value=1.598-07
+
+The p-value is less than the .05 significance level.  Because of this p- value we would reject 
+the null hypothesis. The colored words were recalled at greater rates. 
+The emotionality of the words and their congruence with the color (red/negative or green/positive)
+were not independent of each other.  
+This insinuates that color does, in fact, enhance memory, but whether or not the color induces
+emotion- enhanced memory was not shown.  
+
+
+
